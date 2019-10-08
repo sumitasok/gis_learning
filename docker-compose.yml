@@ -1,0 +1,18 @@
+version: '3'
+services:
+  jupyter:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/notebooks
+      - /Users/sumitasok/data/production/cartis/clients/8/projects/15/surveys/21/datasets/99:/data
+    command: ["/bin/bash", "-c", "cd /notebooks && jupyter notebook --ip=0.0.0.0 --allow-root"]
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 9000M
+        reservations:
+          cpus: '0.25'
+          memory: 2000M
